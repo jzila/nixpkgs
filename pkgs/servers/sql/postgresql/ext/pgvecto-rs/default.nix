@@ -1,6 +1,6 @@
 { lib
 , buildPgrxExtension
-, cargo-pgrx_0_11_2
+, cargo-pgrx_0_11_4
 , clang_16
 , fetchFromGitHub
 , nix-update-script
@@ -27,7 +27,7 @@ in
   # Upstream only works with a fixed version of cargo-pgrx for each release,
   # so we're pinning it here to avoid future incompatibility.
   # See https://docs.pgvecto.rs/developers/development.html#environment, step 6
-  cargo-pgrx = cargo-pgrx_0_11_2;
+  cargo-pgrx = cargo-pgrx_0_11_4;
   rustPlatform = rustPlatform';
 }) rec {
   inherit postgresql;
