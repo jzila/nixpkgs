@@ -33,7 +33,7 @@ in
   inherit postgresql;
 
   pname = "pgvecto-rs";
-  version = "0.2.1";
+  version = "0.3.0-alpha.1.5";
 
   buildInputs = [ openssl ];
   nativeBuildInputs = [ pkg-config ];
@@ -49,7 +49,7 @@ in
   src = fetchFromGitHub {
     owner = "tensorchord";
     repo = "pgvecto.rs";
-    rev = "v${version}";
+    rev = "71b7a1afa6b0336622af286d81a7c30daf5eb4a8";
     hash = "sha256-kwaGHerEVh6Oxb9jQupSapm7CsKl5CoH6jCv+zbi4FE=";
   };
 
