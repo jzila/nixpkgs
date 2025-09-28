@@ -126,8 +126,6 @@ stdenv.mkDerivation (finalAttrs: {
     ./patches/0001-not-for-upstream-CMakeLists-Link-against-webkit2gtk-.patch
     # Link opencv_core and opencv_imgproc instead of opencv_world
     ./patches/dont-link-opencv-world-orca.patch
-    # Don't link osmesa
-    ./patches/no-osmesa.patch
     # The changeset from https://github.com/SoftFever/OrcaSlicer/pull/7650, can be removed when that PR gets merged
     # Allows disabling the update nag screen
     (fetchpatch {
