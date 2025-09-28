@@ -57,13 +57,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "orca-slicer";
-  version = "v2.3.0";
+  version = "v2.3.1-beta";
 
   src = fetchFromGitHub {
     owner = "SoftFever";
     repo = "OrcaSlicer";
     tag = finalAttrs.version;
-    hash = "sha256-MEa57jFBJkqwoAkqI7wXOn1X1zxgLQt3SNeanfD88kU=";
+    hash = "sha256-oWqc1eFB39QNMNr7Z0BOz4SoxOkU9FG1sUPW2c+DCvY=";
   };
 
   nativeBuildInputs = [
