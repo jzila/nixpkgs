@@ -178,7 +178,12 @@ stdenv.mkDerivation (finalAttrs: {
 
   prePatch = ''
     sed -i 's|nlopt_cxx|nlopt|g' cmake/modules/FindNLopt.cmake
-    sed -i 's|"libnoise/noise.h"|"noise/noise.h"|' src/libslic3r/PerimeterGenerator.cpp
+    for file in \
+      src/libslic3r/PerimeterGenerator.cpp \
+      src/libslic3r/Feature/FuzzySkin/FuzzySkin.cpp
+    do
+      sed -i 's|"libnoise/noise.h"|"noise/noise.h"|' "$file"
+    done
   '';
 
   cmakeFlags = [
@@ -191,13 +196,13 @@ stdenv.mkDerivation (finalAttrs: {
     (lib.cmakeFeature "CMAKE_CXX_FLAGS" "-DGL_SILENCE_DEPRECATION")
     (lib.cmakeFeature "CMAKE_EXE_LINKER_FLAGS" "-Wl,--no-as-needed")
     (lib.cmakeBool "ORCA_VERSION_CHECK_DEFAULT" false)
-    (lib.cmakeFeature "LIBNOISE_INCLUDE_DIR" "${libnoise}/include/noise")
+    (lib.cmakeFeature "LIBNOISE_INCLUDE_DIR" "${libnoise}/include")
     (lib.cmakeFeature "LIBNOISE_LIBRARY" "${libnoise}/lib/libnoise-static.a")
     "-Wno-dev"
   ];
 
   # Generate translation files
-  postBuild = "( cd .. && ./run_gettext.sh )";
+  postBuild = "( cd .. && ./scripts/run_gettext.sh )";
 
   preFixup = ''
     gappsWrapperArgs+=(
