@@ -38,6 +38,13 @@ stdenv'.mkDerivation rec {
     fetchSubmodules = true;
   };
 
+  postPatch = ''
+    substituteInPlace third_party/cpu_features/CMakeLists.txt \
+      --replace-fail 'cmake_minimum_required(VERSION 3.0)' 'cmake_minimum_required(VERSION 3.10)'
+    substituteInPlace third_party/ruy/third_party/cpuinfo/deps/clog/CMakeLists.txt \
+      --replace-fail 'CMAKE_MINIMUM_REQUIRED(VERSION 3.1 FATAL_ERROR)' 'CMAKE_MINIMUM_REQUIRED(VERSION 3.10 FATAL_ERROR)'
+  '';
+
   nativeBuildInputs = [
     cmake
   ]
